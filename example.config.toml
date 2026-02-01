@@ -1,0 +1,50 @@
+[config]
+utility_rpc = "https://api.mainnet-beta.solana.com"
+transactions = 100
+delay_ms = 1600
+nonce_account = "<nonce account>" # https://docs.anza.xyz/cli/examples/durable-nonce/#nonce-account-creation
+private_key = "<base58 keypair>" # signer / nonce authority
+commitment = "processed"         # processed | confirmed | finalized
+landing_grace_ms = 10000
+prio_fee = 0.1                   # lamports per CU
+compute_unit_limit = 1000
+
+[grpc]
+name = "listener"
+url = "http://fra.corvus-labs.io:10101"
+kind = "yellowstone"
+# x_token = "optional-token"
+
+[[endpoint]]
+name = "rpc"
+url = "http://fra.corvus-labs.io:8899"
+kind = "rpc"
+
+[[endpoint]]
+name = "jito"
+url = "https://mainnet.block-engine.jito.wtf/api/v1/transactions?uuid=redacted"
+kind = "custom"
+tip_lamports = 1000000
+tip_wallet = "DfXygSm4jCyNCybVYYK6DwvWqjKee8pbDmJGcLWNDXjh"
+
+[[endpoint]]
+name = "falcon"
+url = "http://fra.falcon.wtf/?api-key=redacted"
+kind = "custom"
+tip_lamports = 1000000
+tip_wallet = "Fa1con1zUzb6qJVFz5tNkPq1Ahm8H1qKW7Q48252QbkQ"
+
+[[endpoint]]
+name = "0slot"
+url = "https://de1.0slot.trade?api-key=redacted"
+kind = "custom"
+tip_lamports = 1000000
+tip_wallet = "7toBU3inhmrARGngC7z6SjyP85HgGMmCTEwGNRAcYnEK"
+
+[[endpoint]]
+name = "soyas"
+url = "fra.landing.soyas.xyz:9000"
+kind = "soyas"
+api_key = "redacted"
+tip_wallet = "soyascXFW5wEEYiwfEmHy2pNwomqzvggJosGVD6TJdY"
+tip_lamports = 1000000
