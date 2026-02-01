@@ -85,10 +85,6 @@ jobs:
             target: aarch64-apple-darwin
             archive: tar.gz
             binary_name: landingbench
-          - os: windows-latest
-            target: x86_64-pc-windows-msvc
-            archive: zip
-            binary_name: landingbench.exe
     env:
       CARGO_TERM_COLOR: always
       VERSION: ${{ needs.determine-version.outputs.version }}
@@ -121,14 +117,6 @@ jobs:
           ARTIFACT="landingbench-${VERSION}-${{ matrix.target }}.tar.gz"
           tar -C target/release -czf "$ARTIFACT" "${{ matrix.binary_name }}"
           printf 'ARTIFACT_PATH=%s\n' "$ARTIFACT" >> "$GITHUB_ENV"
-
-      - name: Package artifact (Windows)
-        if: matrix.archive == 'zip'
-        shell: pwsh
-        run: |
-          $artifact = "landingbench-$env:VERSION-${{ matrix.target }}.zip"
-          Compress-Archive -Path "target/release/${{ matrix.binary_name }}" -DestinationPath $artifact
-          Add-Content -Path $env:GITHUB_ENV -Value "ARTIFACT_PATH=$artifact"
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
